@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Oct 19, 2022 at 10:38 AM
+-- Generation Time: Nov 12, 2022 at 08:32 AM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 7.4.29
 
@@ -75,8 +75,11 @@ CREATE TABLE `book` (
 --
 
 INSERT INTO `book` (`book_id`, `book_user_id`, `book_author_id`, `book_publication_id`, `book_category_id`, `book_language_id`, `book_title`, `book_isbn`, `book_edition`, `book_edition_year`, `book_number_copies`, `book_volume`, `book_price`, `book_description`, `book_location`, `book_image`) VALUES
-(17, '17', '2', '3', '1', '1', 'Algorithms', '34252', '2022-06-01', '2017', '4', 'New', '130$', '', 'campus', 'pic.jpeg'),
-(18, '18', '4', '1', '2', '1', 'DBMS', '12345', '2022-06-01', '2018', '7', 'Used Maintained', '100$', '', 'Near white building', 'pic.jpeg');
+(18, '18', '4', '1', '2', '1', 'DBMS', '12345', '2017-06-01', '2018', '7', 'Used Maintained', '100$', '', 'Near white building', 'pic.jpeg'),
+(19, '18', '1', '3', '1', '1', 'C++', '3456789', '2017-06-01', '2000', '2', 'New', '$160', '', 'Rockefeller Bulding', 'C++.jpg'),
+(21, '23', '3', '2', '3', '1', 'Why Nations Fail', '123456789', '2017-06-01', '2005', '5', 'fair', '$80', '', 'Rockefeller Bulding', 'wnf.jpg'),
+(22, '24', '2', '2', '4', '1', 'The Gardener', '67890-123', '2018-02-21', '2001', '2', 'Good', '$120', '', 'campus', 'gard.jpg'),
+(23, '26', '4', '1', '1', '1', 'Programming', '4567-9087', '2017-06-01', '2012', '2', 'Relatively New', '$135', '', 'Bingham Building', 'bp.jpeg');
 
 -- --------------------------------------------------------
 
@@ -103,7 +106,12 @@ INSERT INTO `book_request` (`br_id`, `br_user_id`, `br_book_id`) VALUES
 (7, 17, 5),
 (8, 18, 17),
 (9, 18, 17),
-(10, 18, 14);
+(10, 18, 14),
+(11, 17, 19),
+(12, 17, 19),
+(13, 17, 19),
+(14, 18, 21),
+(15, 23, 22);
 
 -- --------------------------------------------------------
 
@@ -225,7 +233,11 @@ CREATE TABLE `message` (
 INSERT INTO `message` (`message_id`, `message_user_id`, `message_send_user_id`, `message_title`, `message_description`) VALUES
 (4, '17', '18', 'want to buy book', 'hi i want this book urgently'),
 (5, '17', '', 'want to buy book', 'knlk'),
-(6, '17', '18', 'hi', 'need the book');
+(6, '17', '18', 'hi', 'need the book'),
+(7, '17', '18', 'Hi I want the Algorithms Book', ''),
+(8, '23', '18', 'Why Nations Fail -Book Required', 'Do you have current edition of this book?'),
+(9, '24', '23', 'The Garderner Book', 'I need its sequel'),
+(10, '18', '', 'C++ book ', 'I want this book ');
 
 -- --------------------------------------------------------
 
@@ -300,7 +312,12 @@ INSERT INTO `request` (`request_id`, `request_user_id`, `request_title`, `reques
 (6, '17', 'Algorithms 4th Edition', 'author not mentioned'),
 (7, '18', 'java', 'Need it urgently'),
 (8, '17', 'Java', 'need it'),
-(9, '18', 'java', 'hi\r\n');
+(9, '18', 'java', 'hi\r\n'),
+(10, '23', 'Java 4th Edition', 'need the book'),
+(11, '17', 'HTML 4th Edition', 'Require the book'),
+(12, '17', 'Data Mining', 'I require this book for my final semester\r\n'),
+(13, '24', 'Data Mining', 'Require the book for my final semester'),
+(14, '26', 'Data Science', 'Would this book be available?');
 
 -- --------------------------------------------------------
 
@@ -382,8 +399,11 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` (`user_id`, `user_level_id`, `user_username`, `user_password`, `user_name`, `user_add1`, `user_add2`, `user_city`, `user_state`, `user_country`, `user_email`, `user_mobile`, `user_gender`, `user_dob`, `user_image`) VALUES
 (4, '1', 'admin', 'test', 'Aditi Chaitty', 'House no : 768', 'Overlook', '1', '1', '2', 'support@gmail.com', '2165773815', '', '12 january, 2013', ''),
-(17, '3', '3592830', 'aditi', 'Aditi', '2489 Overlook Road', '', '2', '5', '2', 'mondaladiti75@gmail.com', '2165773815', '', '28 March,2000', ''),
-(18, '3', '3592879', 'cd', 'Chaitanya Dev Chauhan', '2489 Overlook Road', '', '6', '6', '2', 'cd@gmail.com', '2165770794', '', '16 March,2000', 'DSC_3862 us.jpg');
+(18, '3', '3592879', 'cd', 'Chaitanya Dev Chauhan', '2489 Overlook Road', '', '6', '6', '2', 'cd@gmail.com', '2165770794', '', '16 March,2000', 'DSC_3862 us.jpg'),
+(22, '3', 'aditi', 'aditi', 'CD', '2489 Overlook Road', '', '6', '6', '2', 'mondaladiti75@gmail.com', '08170013309', '', '15 November,2022', ''),
+(23, '3', '3592830', 'aditi28', 'Aditi Mondal', '2489 Overlook Road', 'Cleveland Heights', '6', '6', '2', 'mondaladiti75@gmail.com', '2165773815', '', '28 March,2000', 'IMG_0849.jpg'),
+(24, '3', '2345678', 'tina', 'Tina Jones', 'Euclid Avenue', '', '6', '6', '2', 'tina@gmail.com', '2165778908', '', '16 November,1994', 'emilia.webp'),
+(26, '3', '1987654', 'jm', 'Jack Miler', 'Beachwood', '', '6', '6', '2', 'jm@gmail.com', '2164882904', '', '10 March,1999', 'njk.png');
 
 --
 -- Indexes for dumped tables
@@ -499,13 +519,13 @@ ALTER TABLE `author`
 -- AUTO_INCREMENT for table `book`
 --
 ALTER TABLE `book`
-  MODIFY `book_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `book_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT for table `book_request`
 --
 ALTER TABLE `book_request`
-  MODIFY `br_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `br_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `category`
@@ -541,7 +561,7 @@ ALTER TABLE `language`
 -- AUTO_INCREMENT for table `message`
 --
 ALTER TABLE `message`
-  MODIFY `message_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `message_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `month`
@@ -559,7 +579,7 @@ ALTER TABLE `publication`
 -- AUTO_INCREMENT for table `request`
 --
 ALTER TABLE `request`
-  MODIFY `request_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `request_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `salutions`
@@ -583,7 +603,7 @@ ALTER TABLE `state`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
