@@ -32,12 +32,12 @@ jQuery(function() {
     <!--container start-->
     <div class="registration-bg">
         <div class="container">
-            <form action="lib/book.php" enctype="multipart/form-data" method="post" class="form-signin wow fadeInUp" action="" style="max-width:800px">
+            <form name="listbook" action="lib/book.php" enctype="multipart/form-data" method="post" class="form-signin wow fadeInUp" action="" style="max-width:800px" onsubmit="return validateForm()">
                 <h2 class="form-signin-heading">Add New Book</h2>
                 <div class="login-wrap">
 				    <div class="form-group">
 							<label for="pwd">Book Name</label>
-							<input type="text" class="form-control" placeholder="Book Name" autofocus="" name="book_title" id="book_title" value="<?=$data[book_title]?>">
+							<input type="text" required class="form-control" placeholder="Book Name" autofocus="" name="book_title" id="book_title" value="<?=$data[book_title]?>">
 				    </div>
 						<div class="form-group">
 							<label for="pwd">Book Author</label>
@@ -65,35 +65,35 @@ jQuery(function() {
 				    </div>
 				    <div class="form-group">
 							<label for="pwd">Book ISBN No</label>
-							<input type="text" class="form-control" placeholder="Book ISBN No" autofocus="" name="book_isbn" id="book_isbn" value="<?=$data[book_isbn]?>">
+							<input type="text" required class="form-control" placeholder="Book ISBN No" autofocus="" name="book_isbn" id="book_isbn" value="<?=$data[book_isbn]?>">
 				    </div>
 				    <div class="form-group">
 							<label for="pwd">Purchase Date</label>
-							<input type="date" value="2017-06-01"class="form-control" placeholder="Purchase Date" autofocus="" name="book_edition" id="book_edition" value="<?=$data[book_edition]?>">
+							<input type="date" value="2017-06-01" required class="form-control" placeholder="Purchase Date" autofocus="" name="book_edition" id="book_edition" value="<?=$data[book_edition]?>">
 				    </div>
 				    <div class="form-group">
 							<label for="pwd">Book Edition Year</label>
-							<input type="text" class="form-control" placeholder="Book Edition Year" autofocus="" id="book_edition_year" name="book_edition_year" value="<?=$data[book_edition_year]?>">
+							<input type="text" required class="form-control" placeholder="Book Edition Year" autofocus="" id="book_edition_year" name="book_edition_year" value="<?=$data[book_edition_year]?>">
 				    </div>
 				    <div class="form-group">
 							<label for="pwd">No. Of Copies</label>
-							<input type="text" class="form-control" placeholder="No of Copies" autofocus="" name="book_number_copies" id="book_number_copies" value="<?=$data[book_number_copies]?>">
+							<input type="text" required class="form-control" placeholder="No of Copies" autofocus="" name="book_number_copies" id="book_number_copies" value="<?=$data[book_number_copies]?>">
 				    </div>
 				    <div class="form-group">
 							<label for="pwd">Book Condition</label>
-							<input type="text" class="form-control" placeholder="Book Condition" autofocus="" name="book_volume" id="book_volume" value="<?=$data[book_volume]?>">
+							<input type="text" required class="form-control" placeholder="Book Condition" autofocus="" name="book_volume" id="book_volume" value="<?=$data[book_volume]?>">
 				    </div>
 						<div class="form-group">
 							<label for="pwd">Book Price</label>
-							<input type="text" class="form-control" placeholder="Book Price" autofocus="" name="book_price" id="book_price" value="<?=$data[book_price]?>">
+							<input type="text" required class="form-control" placeholder="Book Price" autofocus="" name="book_price" id="book_price" value="<?=$data[book_price]?>">
 				    </div>
             <div class="form-group">
 							<label for="pwd">Book Location</label>
-							<input type="text" class="form-control" placeholder="Book Location" autofocus="" name="book_location" id="book_location" value="<?=$data[book_location]?>">
+							<input type="text" required class="form-control" placeholder="Book Location" autofocus="" name="book_location" id="book_location" value="<?=$data[book_location]?>">
 				    </div>
             <div class="form-group">
 							<label for="pwd">Book Picture</label>
-							<input type="file" class="form-control" placeholder="Book Mobile" autofocus="" name="book_image" id="book_image" value="<?=$data[book_image]?>">
+							<input type="file" required class="form-control" placeholder="Book Mobile" autofocus="" name="book_image" id="book_image" value="<?=$data[book_image]?>">
 							<?php if(isset($data[book_image]) && $data[book_image] != "")  {?>
 							<div><img src="<?=$SERVER_PATH.'uploads/'.$data[book_image]?>" style="width: 100px"></div><br>
 							<?php } ?>
@@ -107,4 +107,31 @@ jQuery(function() {
         </div>
      </div>
     <!--container end-->
+		<script>
+		function validateForm() {
+		  let x = document.forms["listbook"]["book_title"].value;
+			var content = /^[0-9a-zA-Z-+()]+$/;
+		  if (!x.match(content)) {
+		    alert("Fill in correct Book name");
+		    return false;
+			}
+			let y = document.forms["listbook"]["book_isbn"].value;
+			var regex = /^[0-9-+()]*$/;
+			if (!y.match(regex)) {
+		    alert("Fill in correct ISBN");
+		    return false;
+       }
+			 let z = document.forms["listbook"]["book_edition_year"].value;
+ 			var regex2 = /^[0-9]*$/;
+ 			if (!z.match(regex2)) {
+ 		    alert("Fill in correct Edition Year");
+ 		    return false;
+        }
+				let z1 = document.forms["listbook"]["book_number_copies"].value;
+  			if (!z1.match(regex2)) {
+  		    alert("Fill in correct Number of Copies");
+  		    return false;
+         }
+		}
+		</script>
 <?php include_once("includes/footer.php"); ?>
