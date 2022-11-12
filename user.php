@@ -32,16 +32,16 @@ jQuery(function() {
     <!--container start-->
     <div class="registration-bg">
         <div class="container">
-            <form action="lib/user.php" enctype="multipart/form-data" method="post" class="form-signin wow fadeInUp" action="" style="max-width:800px">
+            <form name="register" action="lib/user.php" enctype="multipart/form-data" method="post" class="form-signin wow fadeInUp" action="" style="max-width:800px" onsubmit="return validateForm()" >
                 <h2 class="form-signin-heading">Add User</h2>
                 <div class="login-wrap">
 				    <div class="form-group">
 						<label for="pwd">Full Name</label>
-						<input type="text" class="form-control" placeholder="Full Name" autofocus="" name="user_name" id="user_name" value="<?=$data[user_name]?>">
+						<input type="text" required class="form-control" placeholder="Full Name" autofocus="" name="user_name" id="user_name" value="<?=$data[user_name]?>">
 				    </div>
 				    <div class="form-group">
 						<label for="pwd">User Email</label>
-						<input type="text" class="form-control" placeholder="User Email" autofocus="" name="user_email" id="user_email" value="<?=$data[user_email]?>">
+						<input type="text" required class="form-control" placeholder="User Email" autofocus="" name="user_email" id="user_email" value="<?=$data[user_email]?>">
 				    </div>
 						<div class="form-group" id="userRole">
 						<label for="pwd">Select Role</label>
@@ -51,15 +51,15 @@ jQuery(function() {
 				    </div>
 				    <div class="form-group">
 						<label for="pwd">Case ID</label>
-						<input type="text" class="form-control" placeholder="Case ID is your Login ID" autofocus="" name="user_username" id="user_username" value="<?=$data[user_username]?>">
+						<input type="text" required class="form-control" placeholder="Case ID is your Login ID" autofocus="" name="user_username" id="user_username" value="<?=$data[user_username]?>">
 				    </div>
 				    <div class="form-group">
 						<label for="pwd">Login Password</label>
-						<input type="text" class="form-control" placeholder="Login Password" autofocus="" name="user_password" id="user_password" value="<?=$data[user_password]?>">
+						<input type="text" required class="form-control" placeholder="Login Password" autofocus="" name="user_password" id="user_password" value="<?=$data[user_password]?>">
 				    </div>
 						<div class="form-group">
 						<label for="pwd">User Mobile</label>
-						<input type="text" class="form-control" placeholder="User Mobile" autofocus="" name="user_mobile" id="user_mobile" value="<?=$data[user_mobile]?>">
+						<input type="text" required class="form-control" placeholder="User Mobile" autofocus="" name="user_mobile" id="user_mobile" value="<?=$data[user_mobile]?>">
 				    </div>
 				    <div class="form-group">
 						<label for="pwd">User Date of Birth</label>
@@ -67,7 +67,7 @@ jQuery(function() {
 				    </div>
 				    <div class="form-group">
 						<label for="pwd">User Address Line 1</label>
-						<input type="text" class="form-control" placeholder="User Address Line 1" autofocus="" name="user_add1" id="user_date" value="<?=$data[user_add1]?>">
+						<input type="text" required class="form-control" placeholder="User Address Line 1" autofocus="" name="user_add1" id="user_date" value="<?=$data[user_add1]?>">
 				    </div>
 				    <div class="form-group">
 						<label for="pwd">User Address Line 2</label>
@@ -93,7 +93,7 @@ jQuery(function() {
 				    </div>
 				    <div class="form-group">
 						<label for="pwd">User Picture</label>
-						<input type="file" class="form-control" placeholder="User Mobile" autofocus="" name="user_image" id="user_image" value="<?=$data[user_image]?>">
+						<input type="file" required class="form-control" placeholder="User Mobile" autofocus="" name="user_image" id="user_image" value="<?=$data[user_image]?>">
 						<?php if(isset($data[user_image]) && $data[user_image] != "")  {?>
 						<div><img src="<?=$SERVER_PATH.'uploads/'.$data[user_image]?>" style="width: 100px"></div><br>
 						<?php } ?>
@@ -111,5 +111,15 @@ jQuery(function() {
 	<?php if($_SESSION['user_details']['user_level_id'] != 1)  { ?>
 		$("#userRole").hide();
 	<?php } ?>
+</script>
+<script>
+function validateForm() {
+  let x = document.forms["register"]["user_username"].value;
+	var number = /^[0-9]+$/;
+  if (!x.match(number)) {
+    alert("Fill in correct Case ID");
+    return false;
+  }
+}
 </script>
 <?php include_once("includes/footer.php"); ?>
