@@ -50,7 +50,7 @@ In this platform users willing to sell their books can set their own price and s
 
 4. Students can request books from other student who has listed it on the website and can directly message them regarding the same through the user portal.
 
-5. Users can view their added books and view details of the students who have requested a particular book from them under 'My Administration' section alomg with any messages from the students.
+5. Users can view their added books and view details of the students who have requested a particular book from them under 'My Administration' section along with any messages from the students.
 
 6.  Additional feature- Queries of books sent to admin will be visible to all users in case the book has not been listed on the website and a user has it, seeing the query for the book he/she can upload it for sell if they want.
 
