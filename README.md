@@ -36,3 +36,4 @@ In this platform users willing to sell their books can set their own price and s
 
 13. admin login details, username = admin and Password=test.
 
+14. Can perform the same steps for MacOS, the project runs on both Windows or MacOS
